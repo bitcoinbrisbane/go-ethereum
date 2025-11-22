@@ -42,6 +42,7 @@ var activators = map[int]func(*JumpTable){
 	4762: enable4762,
 	7702: enable7702,
 	7939: enable7939,
+	8082: enable8082,
 }
 
 // EnableEIP enables the given EIP on the config.
@@ -555,4 +556,29 @@ func enable7702(jt *JumpTable) {
 	jt[CALLCODE].dynamicGas = gasCallCodeEIP7702
 	jt[STATICCALL].dynamicGas = gasStaticCallEIP7702
 	jt[DELEGATECALL].dynamicGas = gasDelegateCallEIP7702
+}
+
+// enable8082 applies EIP-8082 (Contract Event Subscription)
+// - Adds SUBSCRIBE opcode
+// - Adds UNSUBSCRIBE opcode
+// - Adds NOTIFYSUBSCRIBERS opcode
+func enable8082(jt *JumpTable) {
+	jt[SUBSCRIBE] = &operation{
+		execute:    opSubscribe,
+		dynamicGas: gasSubscribe,
+		minStack:   minStack(6, 1),
+		maxStack:   maxStack(6, 1),
+	}
+	jt[UNSUBSCRIBE] = &operation{
+		execute:    opUnsubscribe,
+		dynamicGas: gasUnsubscribe,
+		minStack:   minStack(2, 1),
+		maxStack:   maxStack(2, 1),
+	}
+	jt[NOTIFYSUBSCRIBERS] = &operation{
+		execute:    opNotifySubscribers,
+		dynamicGas: gasNotifySubscribers,
+		minStack:   minStack(3, 1),
+		maxStack:   maxStack(3, 1),
+	}
 }

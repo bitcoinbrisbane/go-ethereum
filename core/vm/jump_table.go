@@ -101,6 +101,7 @@ func newOsakaInstructionSet() JumpTable {
 func newPragueInstructionSet() JumpTable {
 	instructionSet := newCancunInstructionSet()
 	enable7702(&instructionSet) // EIP-7702 Setcode transaction type
+	enable8082(&instructionSet) // EIP-8082 Contract Event Subscription
 	return validate(instructionSet)
 }
 

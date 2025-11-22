@@ -483,3 +483,46 @@ func gasSelfdestruct(evm *EVM, contract *Contract, stack *Stack, mem *Memory, me
 	}
 	return gas, nil
 }
+
+// gasSubscribe calculates gas for the SUBSCRIBE opcode (EIP-8082)
+func gasSubscribe(evm *EVM, contract *Contract, stack *Stack, mem *Memory, memorySize uint64) (uint64, error) {
+	// Base gas cost for subscription creation plus storage costs
+	return params.SubscribeGas, nil
+}
+
+// gasUnsubscribe calculates gas for the UNSUBSCRIBE opcode (EIP-8082)
+func gasUnsubscribe(evm *EVM, contract *Contract, stack *Stack, mem *Memory, memorySize uint64) (uint64, error) {
+	// Base gas cost for subscription removal plus storage refund
+	return params.UnsubscribeGas, nil
+}
+
+// gasNotifySubscribers calculates gas for the NOTIFYSUBSCRIBERS opcode (EIP-8082)
+func gasNotifySubscribers(evm *EVM, contract *Contract, stack *Stack, mem *Memory, memorySize uint64) (uint64, error) {
+	// Base gas cost plus per-subscriber gas
+	// We need to count subscribers dynamically
+	eventSig := stack.Back(0).Bytes32()
+	target := contract.Address()
+
+	numSubscribers := uint64(0)
+	if evm.SubscriptionManager != nil {
+		subscribers := evm.StateDB.GetSubscribers(target, eventSig)
+		numSubscribers = uint64(len(subscribers))
+	}
+
+	gas := params.NotifySubscribersGas + (numSubscribers * params.PerSubscriberGas)
+
+	// Add memory expansion gas for reading event data
+	dataSize := stack.Back(2).Uint64()
+	dataOffset := stack.Back(1).Uint64()
+	memGas, err := memoryGasCost(mem, dataOffset+dataSize)
+	if err != nil {
+		return 0, err
+	}
+
+	var overflow bool
+	if gas, overflow = math.SafeAdd(gas, memGas); overflow {
+		return 0, ErrGasUintOverflow
+	}
+
+	return gas, nil
+}

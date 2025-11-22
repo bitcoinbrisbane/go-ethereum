@@ -99,6 +99,11 @@ type StateDB interface {
 
 	AccessEvents() *state.AccessEvents
 
+	// EIP-8082 - Contract Event Subscription methods
+	SetSubscription(common.Hash, *types.Subscription)
+	GetSubscription(common.Hash) *types.Subscription
+	GetSubscribers(common.Address, common.Hash) []*types.Subscription
+
 	// Finalise must be invoked at the end of a transaction
 	Finalise(bool)
 }

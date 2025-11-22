@@ -130,6 +130,10 @@ type EVM struct {
 
 	readOnly   bool   // Whether to throw on stateful modifications
 	returnData []byte // Last CALL's return data for subsequent reuse
+
+	// EIP-8082 - Contract Event Subscription
+	SubscriptionManager *SubscriptionManager      // Manages event subscriptions
+	PendingCallbacks    []*types.CallbackExecution // Callbacks scheduled for execution
 }
 
 // NewEVM constructs an EVM instance with the supplied block context, state
@@ -138,13 +142,15 @@ type EVM struct {
 // needed by calling evm.SetTxContext.
 func NewEVM(blockCtx BlockContext, statedb StateDB, chainConfig *params.ChainConfig, config Config) *EVM {
 	evm := &EVM{
-		Context:     blockCtx,
-		StateDB:     statedb,
-		Config:      config,
-		chainConfig: chainConfig,
-		chainRules:  chainConfig.Rules(blockCtx.BlockNumber, blockCtx.Random != nil, blockCtx.Time),
-		jumpDests:   newMapJumpDests(),
-		hasher:      crypto.NewKeccakState(),
+		Context:             blockCtx,
+		StateDB:             statedb,
+		Config:              config,
+		chainConfig:         chainConfig,
+		chainRules:          chainConfig.Rules(blockCtx.BlockNumber, blockCtx.Random != nil, blockCtx.Time),
+		jumpDests:           newMapJumpDests(),
+		hasher:              crypto.NewKeccakState(),
+		SubscriptionManager: NewSubscriptionManager(statedb),
+		PendingCallbacks:    make([]*types.CallbackExecution, 0),
 	}
 	evm.precompiles = activePrecompiledContracts(evm.chainRules)
 
@@ -692,5 +698,72 @@ func (evm *EVM) GetVMContext() *tracing.VMContext {
 		Random:      evm.Context.Random,
 		BaseFee:     evm.Context.BaseFee,
 		StateDB:     evm.StateDB,
+	}
+}
+
+// ProcessCallbacks executes all pending subscription callbacks (EIP-8082).
+// This should be called after the main transaction execution to process
+// event subscription callbacks in isolated contexts.
+func (evm *EVM) ProcessCallbacks() error {
+	for _, cb := range evm.PendingCallbacks {
+		evm.executeCallback(cb)
+	}
+	// Clear pending callbacks after processing
+	evm.PendingCallbacks = nil
+	return nil
+}
+
+// executeCallback executes a single subscription callback in an isolated context (EIP-8082).
+// If the callback fails or runs out of gas, it reverts only the callback's state changes
+// while keeping the original transaction's state changes intact.
+func (evm *EVM) executeCallback(cb *types.CallbackExecution) {
+	// Create a snapshot of the state before callback execution
+	snapshot := evm.StateDB.Snapshot()
+
+	// Create a contract reference for the subscription dispatcher
+	dispatcher := AccountRef(params.SubscriptionDispatcherAddress)
+
+	// Preserve original tx.origin
+	originalOrigin := evm.TxContext.Origin
+	evm.TxContext.Origin = cb.OriginalOrigin
+
+	// Execute callback with try-catch semantics
+	ret, gasUsed, err := evm.Call(
+		dispatcher,
+		cb.CallbackAddress,
+		cb.CallbackData,
+		cb.GasLimit,
+		uint256.NewInt(0),
+	)
+
+	// Restore original tx.origin
+	evm.TxContext.Origin = originalOrigin
+
+	if err != nil {
+		// Callback failed - revert its state changes but continue
+		evm.StateDB.RevertToSnapshot(snapshot)
+
+		// Log callback failure
+		evm.StateDB.AddLog(&types.Log{
+			Address: params.SubscriptionManagerAddress,
+			Topics: []common.Hash{
+				common.BytesToHash([]byte("CallbackFailed")),
+				cb.SubscriptionID,
+			},
+			Data: []byte(err.Error()),
+		})
+	} else {
+		// Callback succeeded - refund unused gas
+		evm.SubscriptionManager.RefundGas(cb.SubscriptionID, gasUsed)
+
+		// Log callback success
+		evm.StateDB.AddLog(&types.Log{
+			Address: params.SubscriptionManagerAddress,
+			Topics: []common.Hash{
+				common.BytesToHash([]byte("CallbackSuccess")),
+				cb.SubscriptionID,
+			},
+			Data: ret,
+		})
 	}
 }

@@ -1009,3 +1009,127 @@ func makeDup(size int) executionFunc {
 		return nil, nil
 	}
 }
+
+// opSubscribe implements the SUBSCRIBE opcode (EIP-8082)
+// Stack input: [target_address, event_signature, callback_address, callback_selector, gas_limit, gas_price]
+// Stack output: [subscription_id]
+func opSubscribe(pc *uint64, evm *EVM, scope *ScopeContext) ([]byte, error) {
+	if evm.readOnly {
+		return nil, ErrWriteProtection
+	}
+
+	stack := scope.Stack
+	gasPriceU256 := stack.pop()
+	gasLimit := stack.pop()
+	callbackSelectorU256 := stack.pop()
+	callbackAddress := stack.pop()
+	eventSignature := stack.pop()
+	targetAddress := stack.pop()
+
+	// Convert to appropriate types
+	target := common.Address(targetAddress.Bytes20())
+	eventSig := eventSignature.Bytes32()
+	callback := common.Address(callbackAddress.Bytes20())
+
+	// Extract 4-byte selector
+	var selector [4]byte
+	selectorBytes := callbackSelectorU256.Bytes()
+	if len(selectorBytes) >= 4 {
+		copy(selector[:], selectorBytes[len(selectorBytes)-4:])
+	} else {
+		copy(selector[4-len(selectorBytes):], selectorBytes)
+	}
+
+	subscriber := scope.Contract.Address()
+
+	// Create subscription
+	if evm.SubscriptionManager == nil {
+		return nil, ErrInvalidSubscription
+	}
+
+	subID, err := evm.SubscriptionManager.Subscribe(
+		target,
+		eventSig,
+		subscriber,
+		callback,
+		selector,
+		gasLimit.Uint64(),
+		gasPriceU256.ToBig(),
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	// Push subscription ID to stack
+	stack.push(new(uint256.Int).SetBytes(subID.Bytes()))
+	return nil, nil
+}
+
+// opUnsubscribe implements the UNSUBSCRIBE opcode (EIP-8082)
+// Stack input: [target_address, event_signature]
+// Stack output: [success (1 or 0)]
+func opUnsubscribe(pc *uint64, evm *EVM, scope *ScopeContext) ([]byte, error) {
+	if evm.readOnly {
+		return nil, ErrWriteProtection
+	}
+
+	stack := scope.Stack
+	eventSignature := stack.pop()
+	targetAddress := stack.pop()
+
+	target := common.Address(targetAddress.Bytes20())
+	eventSig := eventSignature.Bytes32()
+	subscriber := scope.Contract.Address()
+
+	// Remove subscription
+	if evm.SubscriptionManager == nil {
+		stack.push(new(uint256.Int))
+		return nil, nil
+	}
+
+	err := evm.SubscriptionManager.Unsubscribe(target, eventSig, subscriber)
+	if err != nil {
+		stack.push(new(uint256.Int))
+	} else {
+		stack.push(new(uint256.Int).SetUint64(1))
+	}
+
+	return nil, nil
+}
+
+// opNotifySubscribers implements the NOTIFYSUBSCRIBERS opcode (EIP-8082)
+// This is typically called internally during LOG operations for subscribable events
+// Stack input: [event_signature, data_offset, data_size]
+// Stack output: [num_notified]
+func opNotifySubscribers(pc *uint64, evm *EVM, scope *ScopeContext) ([]byte, error) {
+	stack := scope.Stack
+	dataSize := stack.pop()
+	dataOffset := stack.pop()
+	eventSignature := stack.pop()
+
+	eventSig := eventSignature.Bytes32()
+	target := scope.Contract.Address()
+
+	// Get event data from memory
+	eventData := scope.Memory.GetCopy(dataOffset.Uint64(), dataSize.Uint64())
+
+	// Notify subscribers
+	if evm.SubscriptionManager == nil {
+		stack.push(new(uint256.Int))
+		return nil, nil
+	}
+
+	callbacks := evm.SubscriptionManager.NotifySubscribers(
+		target,
+		eventSig,
+		eventData,
+		evm.TxContext.Origin,
+	)
+
+	// Schedule callbacks for execution
+	evm.PendingCallbacks = append(evm.PendingCallbacks, callbacks...)
+
+	// Push number of subscribers notified
+	stack.push(new(uint256.Int).SetUint64(uint64(len(callbacks))))
+	return nil, nil
+}

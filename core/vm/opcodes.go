@@ -212,6 +212,13 @@ const (
 	LOG4
 )
 
+// 0xb0 range - EIP-8082 event subscription ops.
+const (
+	SUBSCRIBE         OpCode = 0xb0
+	UNSUBSCRIBE       OpCode = 0xb1
+	NOTIFYSUBSCRIBERS OpCode = 0xb2
+)
+
 // 0xd0 range - eof operations.
 const (
 	DATALOAD  OpCode = 0xd0
@@ -416,6 +423,11 @@ var opCodeToString = [256]string{
 	LOG3: "LOG3",
 	LOG4: "LOG4",
 
+	// 0xb0 range - EIP-8082 event subscription ops.
+	SUBSCRIBE:         "SUBSCRIBE",
+	UNSUBSCRIBE:       "UNSUBSCRIBE",
+	NOTIFYSUBSCRIBERS: "NOTIFYSUBSCRIBERS",
+
 	// 0xd range - eof ops.
 	DATALOAD:  "DATALOAD",
 	DATALOADN: "DATALOADN",
@@ -604,6 +616,9 @@ var stringToOp = map[string]OpCode{
 	"LOG2":            LOG2,
 	"LOG3":            LOG3,
 	"LOG4":            LOG4,
+	"SUBSCRIBE":       SUBSCRIBE,
+	"UNSUBSCRIBE":     UNSUBSCRIBE,
+	"NOTIFYSUBSCRIBERS": NOTIFYSUBSCRIBERS,
 	"DATALOAD":        DATALOAD,
 	"DATALOADN":       DATALOADN,
 	"DATASIZE":        DATASIZE,

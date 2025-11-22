@@ -132,6 +132,9 @@ type StateDB struct {
 	// Transient storage
 	transientStorage transientStorage
 
+	// EIP-8082 - Contract Event Subscription storage
+	subscriptions map[common.Hash]*types.Subscription // subscription ID -> subscription
+
 	// Journal of state modifications. This is the backbone of
 	// Snapshot and RevertToSnapshot.
 	journal *journal
@@ -183,6 +186,7 @@ func NewWithReader(root common.Hash, db Database, reader Reader) (*StateDB, erro
 		journal:              newJournal(),
 		accessList:           newAccessList(),
 		transientStorage:     newTransientStorage(),
+		subscriptions:        make(map[common.Hash]*types.Subscription),
 	}
 	if db.TrieDB().IsVerkle() {
 		sdb.accessEvents = NewAccessEvents(db.PointCache())
@@ -1499,4 +1503,28 @@ func (s *StateDB) Witness() *stateless.Witness {
 
 func (s *StateDB) AccessEvents() *AccessEvents {
 	return s.accessEvents
+}
+
+// SetSubscription stores a subscription in the state database (EIP-8082)
+func (s *StateDB) SetSubscription(id common.Hash, sub *types.Subscription) {
+	s.subscriptions[id] = sub
+}
+
+// GetSubscription retrieves a subscription from the state database (EIP-8082)
+func (s *StateDB) GetSubscription(id common.Hash) *types.Subscription {
+	return s.subscriptions[id]
+}
+
+// GetSubscribers retrieves all active subscribers for a specific event (EIP-8082)
+func (s *StateDB) GetSubscribers(target common.Address, eventSig common.Hash) []*types.Subscription {
+	var subscribers []*types.Subscription
+
+	// Iterate through all subscriptions and find matching ones
+	for _, sub := range s.subscriptions {
+		if sub.Active && sub.TargetContract == target && sub.EventSignature == eventSig {
+			subscribers = append(subscribers, sub)
+		}
+	}
+
+	return subscribers
 }

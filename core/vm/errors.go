@@ -39,6 +39,10 @@ var (
 	ErrInvalidCode              = errors.New("invalid code: must not begin with 0xef")
 	ErrNonceUintOverflow        = errors.New("nonce uint64 overflow")
 
+	// EIP-8082 - Contract Event Subscription errors
+	ErrInvalidSubscription = errors.New("invalid subscription")
+	ErrInsufficientDeposit = errors.New("insufficient deposit for subscription")
+
 	// errStopToken is an internal token indicating interpreter loop termination,
 	// never returned to outside callers.
 	errStopToken = errors.New("stop token")
