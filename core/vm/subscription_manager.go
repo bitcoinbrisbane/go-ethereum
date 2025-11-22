@@ -80,8 +80,8 @@ func (sm *SubscriptionManager) Subscribe(
 		Topics: []common.Hash{
 			common.BytesToHash([]byte("SubscriptionCreated")),
 			subID,
-			target.Hash(),
-			subscriber.Hash(),
+			common.BytesToHash(target.Bytes()),
+			common.BytesToHash(subscriber.Bytes()),
 		},
 		Data: eventSig.Bytes(),
 	})

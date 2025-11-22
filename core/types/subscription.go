@@ -17,6 +17,7 @@
 package types
 
 import (
+	"io"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -74,7 +75,7 @@ type subscriptionRLP struct {
 }
 
 // EncodeRLP implements rlp.Encoder
-func (s *Subscription) EncodeRLP(w rlp.RawWriter) error {
+func (s *Subscription) EncodeRLP(w io.Writer) error {
 	return rlp.Encode(w, &subscriptionRLP{
 		TargetContract:     s.TargetContract,
 		EventSignature:     s.EventSignature,

@@ -276,6 +276,19 @@ func (s *hookedStateDB) AddLog(log *types.Log) {
 	}
 }
 
+// EIP-8082 - Contract Event Subscription methods
+func (s *hookedStateDB) SetSubscription(id common.Hash, sub *types.Subscription) {
+	s.inner.SetSubscription(id, sub)
+}
+
+func (s *hookedStateDB) GetSubscription(id common.Hash) *types.Subscription {
+	return s.inner.GetSubscription(id)
+}
+
+func (s *hookedStateDB) GetSubscribers(target common.Address, eventSig common.Hash) []*types.Subscription {
+	return s.inner.GetSubscribers(target, eventSig)
+}
+
 func (s *hookedStateDB) Finalise(deleteEmptyObjects bool) {
 	defer s.inner.Finalise(deleteEmptyObjects)
 	if s.hooks.OnBalanceChange == nil {

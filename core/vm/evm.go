@@ -720,16 +720,14 @@ func (evm *EVM) executeCallback(cb *types.CallbackExecution) {
 	// Create a snapshot of the state before callback execution
 	snapshot := evm.StateDB.Snapshot()
 
-	// Create a contract reference for the subscription dispatcher
-	dispatcher := AccountRef(params.SubscriptionDispatcherAddress)
-
 	// Preserve original tx.origin
 	originalOrigin := evm.TxContext.Origin
 	evm.TxContext.Origin = cb.OriginalOrigin
 
 	// Execute callback with try-catch semantics
+	// Use the subscription dispatcher address as the caller
 	ret, gasUsed, err := evm.Call(
-		dispatcher,
+		params.SubscriptionDispatcherAddress,
 		cb.CallbackAddress,
 		cb.CallbackData,
 		cb.GasLimit,
