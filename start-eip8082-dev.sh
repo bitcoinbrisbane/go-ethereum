@@ -100,8 +100,7 @@ echo ""
     --syncmode full \
     --allow-insecure-unlock \
     --nodiscover \
-    --maxpeers 0 \
-    console &
+    --maxpeers 0 &
 
 # Store the PID for cleanup
 GETH_PID=$!

@@ -1,0 +1,169 @@
+[0;34m[INFO][0m Starting Geth with EIP-8082 (Contract Event Subscription) support...
+
+[0;34m[INFO][0m Configuration:
+[0;34m[INFO][0m   - Chain ID: 1337
+[0;34m[INFO][0m   - HTTP RPC: http://127.0.0.1:8545
+[0;34m[INFO][0m   - WebSocket: ws://127.0.0.1:8546
+[0;34m[INFO][0m   - Data Directory: ./dev-data
+[0;34m[INFO][0m   - EIP-8082 Features:
+[0;34m[INFO][0m     * SUBSCRIBE opcode (0xF8)
+[0;34m[INFO][0m     * UNSUBSCRIBE opcode (0xF9)
+[0;34m[INFO][0m     * NOTIFYSUBSCRIBERS opcode (0xFA)
+
+[1;33m[WARNING][0m Data will persist in ./dev-data directory
+[0;34m[INFO][0m Press Ctrl+C to stop the node
+
+[0;32m[SUCCESS][0m Geth started successfully with PID: 88999
+[0;34m[INFO][0m Node is ready for EIP-8082 contract deployment and testing
+[0;34m[INFO][0m 
+[0;34m[INFO][0m Useful commands:
+[0;34m[INFO][0m   - Check accounts: eth.accounts
+[0;34m[INFO][0m   - Get balance: web3.fromWei(eth.getBalance(eth.accounts[0]), 'ether')
+[0;34m[INFO][0m   - Test EIP-8082: Deploy contracts using deploy-eip8082-contracts.sh
+
+WARN [12-30|11:58:33.029] Unknown config environment variable      envvar=GETH_LOG
+INFO [12-30|11:58:33.035] Maximum peer count                       ETH=0 total=0
+WARN [12-30|11:58:33.035] Option --allow-insecure-unlock is deprecated and has no effect
+WARN [12-30|11:58:33.036] The flag --mine is deprecated and will be removed
+INFO [12-30|11:58:33.037] Enabling recording of key preimages since archive mode is used
+WARN [12-30|11:58:33.037] Disabled transaction unindexing for archive node
+INFO [12-30|11:58:33.037] Set global gas cap                       cap=50,000,000
+INFO [12-30|11:58:33.076] Using developer account                  address=0x71562b71999873DB5b286dF957af199Ec94617F7
+INFO [12-30|11:58:33.077] Using pebble as the backing database
+INFO [12-30|11:58:33.077] Allocated cache and file handles         database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata cache=512.00MiB handles=5120
+INFO [12-30|11:58:33.077] Opened ancient database                  database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata/ancient/chain readonly=true
+INFO [12-30|11:58:33.077] Opened Era store                         datadir=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata/ancient/chain/era
+WARN [12-30|11:58:33.078] Setting network ID with command-line flag id=1337
+INFO [12-30|11:58:33.078] Initializing the KZG library             backend=gokzg
+INFO [12-30|11:58:33.079] Allocated trie memory caches             clean=154.00MiB dirty=256.00MiB
+INFO [12-30|11:58:33.079] Using pebble as the backing database
+INFO [12-30|11:58:33.079] Allocated cache and file handles         database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata cache=512.00MiB handles=5120
+INFO [12-30|11:58:33.152] Opened ancient database                  database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata/ancient/chain readonly=false
+INFO [12-30|11:58:33.152] Opened Era store                         datadir=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata/ancient/chain/era
+INFO [12-30|11:58:33.152] State scheme set to already existing     scheme=path
+INFO [12-30|11:58:33.152] Initialising Ethereum protocol           network=1337 dbversion=9
+INFO [12-30|11:58:33.152] Load database journal from file          path=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/triedb/merkle.journal
+INFO [12-30|11:58:33.158] Opened ancient database                  database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/chaindata/ancient/state readonly=false
+INFO [12-30|11:58:33.158] Enabled state history indexing
+INFO [12-30|11:58:33.158] Initialized path database                triecache=154.00MiB statecache=102.00MiB buffer=256.00MiB state-history="last 90000 blocks" index-history=true journal-dir=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/triedb
+INFO [12-30|11:58:33.159] Histories have been fully indexed        type=state last=1
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] ---------------------------------------------------------------------------------------------------------------------------------------------------------
+INFO [12-30|11:58:33.159] Chain ID:  1337 (unknown)
+INFO [12-30|11:58:33.159] Consensus: unknown
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] Pre-Merge hard forks (block based):
+INFO [12-30|11:58:33.159]  - Homestead:                   #0       
+INFO [12-30|11:58:33.159]  - Tangerine Whistle (EIP 150): #0       
+INFO [12-30|11:58:33.159]  - Spurious Dragon/1 (EIP 155): #0       
+INFO [12-30|11:58:33.159]  - Spurious Dragon/2 (EIP 158): #0       
+INFO [12-30|11:58:33.159]  - Byzantium:                   #0       
+INFO [12-30|11:58:33.159]  - Constantinople:              #0       
+INFO [12-30|11:58:33.159]  - Petersburg:                  #0       
+INFO [12-30|11:58:33.159]  - Istanbul:                    #0       
+INFO [12-30|11:58:33.159]  - Muir Glacier:                #0       
+INFO [12-30|11:58:33.159]  - Berlin:                      #0       
+INFO [12-30|11:58:33.159]  - London:                      #0       
+INFO [12-30|11:58:33.159]  - Arrow Glacier:               #0       
+INFO [12-30|11:58:33.159]  - Gray Glacier:                #0       
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] Merge configured:
+INFO [12-30|11:58:33.159]  - Total terminal difficulty:  0
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] Post-Merge hard forks (timestamp based):
+INFO [12-30|11:58:33.159]  - Shanghai:                    @0         
+INFO [12-30|11:58:33.159]  - Cancun:                      @0          blob: (target: 3, max: 6, fraction: 3338477)
+INFO [12-30|11:58:33.159]  - Prague:                      @0          blob: (target: 6, max: 9, fraction: 5007716)
+INFO [12-30|11:58:33.159]  - Osaka:                       @0          blob: (target: 6, max: 9, fraction: 5007716)
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] All fork specifications can be found at https://ethereum.github.io/execution-specs/src/ethereum/forks/
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] ---------------------------------------------------------------------------------------------------------------------------------------------------------
+INFO [12-30|11:58:33.159] 
+INFO [12-30|11:58:33.159] Loaded most recent local block           number=19 hash=1ad93c..4fd824 age=32s
+INFO [12-30|11:58:33.159] Loaded most recent local finalized block number=0  hash=fa742c..504fec age=56y9mo3w
+INFO [12-30|11:58:33.159] Initialized transaction indexer          range="entire chain"
+INFO [12-30|11:58:33.159] Initialized log indexer                  firstblock=0 lastblock=19 firstmap=0 lastmap=0 headindexed=true
+INFO [12-30|11:58:33.170] Enabled full-sync                        head=19 hash=1ad93c..4fd824
+INFO [12-30|11:58:33.170] Gasprice oracle is ignoring threshold set threshold=2
+INFO [12-30|11:58:33.170] Registered sync override service
+WARN [12-30|11:58:33.170] You are running Geth in --dev mode. Please note the following:
+WARN [12-30|11:58:33.170] 
+WARN [12-30|11:58:33.170]   1. This mode is only intended for fast, iterative development without assumptions on
+WARN [12-30|11:58:33.170]      security or persistence.
+WARN [12-30|11:58:33.170]   2. The database is created in memory unless specified otherwise. Therefore, shutting down
+WARN [12-30|11:58:33.170]      your computer or losing power will wipe your entire block data and chain state for
+WARN [12-30|11:58:33.170]      your dev environment.
+WARN [12-30|11:58:33.170]   3. A random, pre-allocated developer account will be available and unlocked as
+WARN [12-30|11:58:33.170]      eth.coinbase, which can be used for testing. The random dev account is temporary,
+WARN [12-30|11:58:33.170]      stored on a ramdisk, and will be lost if your machine is restarted.
+WARN [12-30|11:58:33.170]   4. Mining is enabled by default. However, the client will only seal blocks if transactions
+WARN [12-30|11:58:33.170]      are pending in the mempool. The miner's minimum accepted gas price is 1.
+WARN [12-30|11:58:33.170]   5. Networking is disabled; there is no listen-address, the maximum number of peers is set
+WARN [12-30|11:58:33.170]      to 0, and discovery is disabled.
+WARN [12-30|11:58:33.170] 
+INFO [12-30|11:58:33.170] Starting peer-to-peer node               instance=Geth/v1.16.8-unstable-ef967a2a-20251230/darwin-arm64/go1.25.5
+WARN [12-30|11:58:33.170] P2P server will be useless, neither dialing nor listening
+INFO [12-30|11:58:33.196] IPC endpoint opened                      url=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth.ipc
+ERROR[12-30|11:58:33.196] Unavailable modules in HTTP API list     unavailable=[personal] available="[admin debug web3 eth txpool miner net dev]"
+ERROR[12-30|11:58:33.196] Unavailable modules in HTTP API list     unavailable=[personal] available="[admin debug web3 eth txpool miner net dev]"
+INFO [12-30|11:58:33.197] HTTP server started                      endpoint=[::]:8545 auth=false prefix= cors=* vhosts=*
+INFO [12-30|11:58:33.197] WebSocket enabled                        url=ws://[::]:8546
+INFO [12-30|11:58:33.197] Loaded local transaction journal         transactions=0 dropped=0
+INFO [12-30|11:58:33.197] New local node record                    seq=1,767,059,759,639 id=387ada507609db26 ip=127.0.0.1 udp=0 tcp=0
+INFO [12-30|11:58:33.197] Started P2P networking                   self=enode://ef2a824045860ec96872e9afcb0e6db6db4e20960391b06d31ab57cf6b94def3672b9c2a570485f2863241f48353700b3eadb919780a063a58b5f042c8f8c430@127.0.0.1:0
+INFO [12-30|11:58:33.331] Started log indexer
+INFO [12-30|11:58:33.331] Starting work on payload                 id=0x03a7a88253c5e205
+INFO [12-30|11:58:33.331] Updated payload                          id=0x03a7a88253c5e205 number=20 hash=cf73d5..66e9bc txs=0 withdrawals=0 gas=0 fees=0 root=1a4eb3..7d889d elapsed="98.75µs"
+INFO [12-30|11:58:33.331] Stopping work on payload                 id=0x03a7a88253c5e205 reason=delivery
+INFO [12-30|11:58:33.332] Imported new potential chain segment     number=20 hash=cf73d5..66e9bc blocks=1 txs=0 mgas=0.000 elapsed="245.793µs" mgasps=0.000 triediffs=34.07KiB triedirty=0.00B
+INFO [12-30|11:58:33.332] Chain head was updated                   number=20 hash=cf73d5..66e9bc root=1a4eb3..7d889d elapsed="18.542µs"
+INFO [12-30|11:58:34.333] Starting work on payload                 id=0x03f52bcb4ac9198c
+INFO [12-30|11:58:34.333] Updated payload                          id=0x03f52bcb4ac9198c number=21 hash=266705..341916 txs=0 withdrawals=0 gas=0 fees=0 root=bf1a6e..5b93e8 elapsed="138.042µs"
+INFO [12-30|11:58:34.333] Stopping work on payload                 id=0x03f52bcb4ac9198c reason=delivery
+INFO [12-30|11:58:34.334] Imported new potential chain segment     number=21 hash=266705..341916 blocks=1 txs=0 mgas=0.000 elapsed="250.167µs" mgasps=0.000 triediffs=36.82KiB triedirty=0.00B
+INFO [12-30|11:58:34.334] Chain head was updated                   number=21 hash=266705..341916 root=bf1a6e..5b93e8 elapsed="23.5µs"
+INFO [12-30|11:58:35.335] Starting work on payload                 id=0x0399c88d3720085d
+INFO [12-30|11:58:35.335] Updated payload                          id=0x0399c88d3720085d number=22 hash=eeaba6..5b14db txs=0 withdrawals=0 gas=0 fees=0 root=e296f9..a25d02 elapsed="127.666µs"
+INFO [12-30|11:58:35.335] Stopping work on payload                 id=0x0399c88d3720085d reason=delivery
+INFO [12-30|11:58:35.336] Imported new potential chain segment     number=22 hash=eeaba6..5b14db blocks=1 txs=0 mgas=0.000 elapsed="208.376µs" mgasps=0.000 triediffs=39.49KiB triedirty=0.00B
+INFO [12-30|11:58:35.336] Chain head was updated                   number=22 hash=eeaba6..5b14db root=e296f9..a25d02 elapsed="16.125µs"
+INFO [12-30|11:58:36.337] Starting work on payload                 id=0x035e06a0aacc4785
+INFO [12-30|11:58:36.337] Updated payload                          id=0x035e06a0aacc4785 number=23 hash=265c73..ca2a53 txs=0 withdrawals=0 gas=0 fees=0 root=0f0ce2..c82a12 elapsed="116.75µs"
+INFO [12-30|11:58:36.337] Stopping work on payload                 id=0x035e06a0aacc4785 reason=delivery
+INFO [12-30|11:58:36.338] Imported new potential chain segment     number=23 hash=265c73..ca2a53 blocks=1 txs=0 mgas=0.000 elapsed="174.542µs" mgasps=0.000 triediffs=42.30KiB triedirty=0.00B
+INFO [12-30|11:58:36.338] Chain head was updated                   number=23 hash=265c73..ca2a53 root=0f0ce2..c82a12 elapsed="17.084µs"
+INFO [12-30|11:58:37.137] Submitted contract creation              hash=0xfc4c8ffd256efef13300e6a41b7ad30ca4e0c0054a8a554406f4a87a5a4ba19c from=0x71562b71999873DB5b286dF957af199Ec94617F7 nonce=0 contract=0x3A220f351252089D385b29beca14e27F204c296A value=0
+INFO [12-30|11:58:37.339] Starting work on payload                 id=0x03cb23de326f7ce6
+INFO [12-30|11:58:37.339] Updated payload                          id=0x03cb23de326f7ce6 number=24 hash=ba68fb..092d79 txs=1 withdrawals=0 gas=126,339 fees=0.000126339 root=2577d8..5b3dec elapsed="276µs"
+INFO [12-30|11:58:37.339] Stopping work on payload                 id=0x03cb23de326f7ce6 reason=delivery
+INFO [12-30|11:58:37.340] Imported new potential chain segment     number=24 hash=ba68fb..092d79 blocks=1 txs=1 mgas=0.126 elapsed="316.959µs" mgasps=398.597 triediffs=45.93KiB triedirty=0.00B
+INFO [12-30|11:58:37.340] Chain head was updated                   number=24 hash=ba68fb..092d79 root=2577d8..5b3dec elapsed="75.958µs"
+INFO [12-30|11:58:38.341] Starting work on payload                 id=0x03f8051081ea7df4
+INFO [12-30|11:58:38.341] Updated payload                          id=0x03f8051081ea7df4 number=25 hash=7006ba..c7da2b txs=0 withdrawals=0 gas=0       fees=0           root=68c8a3..c09e3c elapsed="122.875µs"
+INFO [12-30|11:58:38.341] Stopping work on payload                 id=0x03f8051081ea7df4 reason=delivery
+INFO [12-30|11:58:38.341] Imported new potential chain segment     number=25 hash=7006ba..c7da2b blocks=1 txs=0 mgas=0.000 elapsed="192.417µs" mgasps=0.000   triediffs=48.97KiB triedirty=0.00B
+INFO [12-30|11:58:38.341] Chain head was updated                   number=25 hash=7006ba..c7da2b root=68c8a3..c09e3c elapsed="20.083µs"
+WARN [12-30|11:58:39.213] Served eth_subscribe                     conn=127.0.0.1:53089 reqid=1 duration="8.292µs" err="notifications not supported"
+INFO [12-30|11:58:39.251] Submitted contract creation              hash=0x0ad3136594fd4a72d38c2e7756b3b77abdd308967ccaec9d9693bb17fbbedba3 from=0x71562b71999873DB5b286dF957af199Ec94617F7 nonce=1 contract=0xdB7d6AB1f17c6b31909aE466702703dAEf9269Cf value=0
+INFO [12-30|11:58:39.344] Starting work on payload                 id=0x03dbcc0b47f1a589
+INFO [12-30|11:58:39.344] Updated payload                          id=0x03dbcc0b47f1a589 number=26 hash=a2691e..8dd846 txs=1 withdrawals=0 gas=126,339 fees=0.000126339 root=4eb6f2..ffde2d elapsed="257.459µs"
+INFO [12-30|11:58:39.344] Stopping work on payload                 id=0x03dbcc0b47f1a589 reason=delivery
+INFO [12-30|11:58:39.345] Imported new potential chain segment     number=26 hash=a2691e..8dd846 blocks=1 txs=1 mgas=0.126 elapsed="293.959µs" mgasps=429.784 triediffs=52.42KiB triedirty=0.00B
+INFO [12-30|11:58:39.345] Chain head was updated                   number=26 hash=a2691e..8dd846 root=4eb6f2..ffde2d elapsed="82.459µs"
+INFO [12-30|11:58:40.345] Starting work on payload                 id=0x03408544dfdd2342
+INFO [12-30|11:58:40.345] Updated payload                          id=0x03408544dfdd2342 number=27 hash=a010f1..9cf683 txs=0 withdrawals=0 gas=0       fees=0           root=237050..96a91f elapsed="121.542µs"
+INFO [12-30|11:58:40.345] Stopping work on payload                 id=0x03408544dfdd2342 reason=delivery
+INFO [12-30|11:58:40.346] Imported new potential chain segment     number=27 hash=a010f1..9cf683 blocks=1 txs=0 mgas=0.000 elapsed="258.209µs" mgasps=0.000   triediffs=55.30KiB triedirty=0.00B
+INFO [12-30|11:58:40.346] Chain head was updated                   number=27 hash=a010f1..9cf683 root=237050..96a91f elapsed="19.958µs"
+WARN [12-30|11:58:41.321] Served eth_subscribe                     conn=127.0.0.1:53099 reqid=1 duration="5.208µs" err="notifications not supported"
+[0;34m[INFO][0m Shutting down Geth...
+INFO [12-30|11:58:41.327] Got interrupt, shutting down...
+INFO [12-30|11:58:41.327] HTTP server stopped                      endpoint=[::]:8545
+INFO [12-30|11:58:41.327] HTTP server stopped                      endpoint=[::]:8546
+INFO [12-30|11:58:41.327] IPC endpoint closed                      url=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth.ipc
+INFO [12-30|11:58:41.327] Ethereum protocol stopped
+INFO [12-30|11:58:41.327] Transaction pool stopped
+INFO [12-30|11:58:41.339] Persisting dirty state                   head=27 root=237050..96a91f layers=27
+INFO [12-30|11:58:41.386] Persisted dirty state to file            path=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/dev-data/geth/triedb/merkle.journal size=68.97KiB elapsed=47.559ms
+INFO [12-30|11:58:41.414] Blockchain stopped

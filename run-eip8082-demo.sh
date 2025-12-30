@@ -421,6 +421,10 @@ run_full_demo() {
         else
             print_error "Step $((i+1)) failed"
             failed_steps+=("${step_names[i]}")
+            # If Geth failed to start, no point in continuing
+            if [ $i -eq 0 ]; then
+                break
+            fi
         fi
 
         if [ "$WAIT_FOR_INPUT" != "false" ] && [ $i -lt $((${#steps[@]}-1)) ]; then
@@ -451,6 +455,13 @@ run_full_demo() {
             print_error "  - $step"
         done
         print_info "Check logs in $LOG_DIR/ for detailed error information"
+    fi
+
+    # Keep Geth running until user decides to stop
+    if [ ${#failed_steps[@]} -eq 0 ]; then
+        print_info "Demo complete! Geth is still running for further testing."
+        print_info "Press Enter to stop Geth and exit, or Ctrl+C to exit immediately."
+        read -r
     fi
 }
 
@@ -517,6 +528,7 @@ main() {
             ;;
         full)
             run_full_demo
+            stop_geth_node
             ;;
         stop)
             stop_geth_node
@@ -533,8 +545,7 @@ main() {
     esac
 }
 
-# Trap to ensure cleanup on exit
-trap 'stop_geth_node' EXIT
+
 
 # Run main function
 main "$@"

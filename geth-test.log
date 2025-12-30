@@ -85,3 +85,10 @@ INFO [12-30|11:54:32.643] New local node record                    seq=1,767,059
 INFO [12-30|11:54:32.643] Started P2P networking                   self=enode://a4a54e40ee4a15e1f10289efc5058adf404b2cb88f4d49275d075cb5156b994db9c58d88a65c49c4fc9c5809d0321bffcc179ef79038223776b077f8b6ea9f70@127.0.0.1:0
 INFO [12-30|11:54:32.643] HTTP server started                      endpoint=127.0.0.1:8545 auth=false prefix= cors= vhosts=localhost
 INFO [12-30|11:54:32.644] Started log indexer
+INFO [12-30|11:55:33.965] Got interrupt, shutting down...
+INFO [12-30|11:55:33.967] HTTP server stopped                      endpoint=127.0.0.1:8545
+INFO [12-30|11:55:33.967] IPC endpoint closed                      url=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth.ipc
+INFO [12-30|11:55:33.967] Ethereum protocol stopped
+INFO [12-30|11:55:33.967] Transaction pool stopped
+INFO [12-30|11:55:33.974] Persisting dirty state                   root=3e4d95..f04409 layers=0
+WARN [12-30|11:55:33.989] Already shutting down, interrupt more to panic. times=9

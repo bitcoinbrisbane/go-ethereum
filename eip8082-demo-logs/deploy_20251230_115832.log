@@ -1,0 +1,11 @@
+
+[0;34m[INFO][0m EIP-8082 Contract Deployment Script
+[0;34m[INFO][0m =====================================
+
+[0;34m[INFO][0m Checking connection to Geth node...
+[0;32m[SUCCESS][0m Connected to Geth node
+[0;31m[ERROR][0m solc (Solidity compiler) not found
+[0;34m[INFO][0m Please install Solidity compiler:
+[0;34m[INFO][0m   - macOS: brew install solidity
+[0;34m[INFO][0m   - Ubuntu: sudo snap install solc
+[0;34m[INFO][0m   - Or use the custom solc from the solidity repo

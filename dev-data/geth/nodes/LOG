@@ -1,0 +1,76 @@
+=============== Dec 30, 2025 (AEST) ===============
+11:55:59.614321 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:55:59.629041 db@open opening
+11:55:59.629443 version@stat F·[] S·0B[] Sc·[]
+11:55:59.633594 db@janitor F·2 G·0
+11:55:59.633632 db@open done T·4.560125ms
+11:55:59.893382 db@close closing
+11:55:59.893479 db@close done T·92.583µs
+=============== Dec 30, 2025 (AEST) ===============
+11:56:17.076371 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:56:17.077692 version@stat F·[] S·0B[] Sc·[]
+11:56:17.077708 db@open opening
+11:56:17.077745 journal@recovery F·1
+11:56:17.078101 journal@recovery recovering @1
+11:56:17.083145 memdb@flush created L0@2 N·2 S·181B "loc..seq,v2":"version,v1"
+11:56:17.083667 version@stat F·[1] S·181B[181B] Sc·[0.25]
+11:56:17.105194 db@janitor F·3 G·0
+11:56:17.105230 db@open done T·27.515834ms
+11:56:19.960483 db@close closing
+11:56:19.960559 db@close done T·75.791µs
+=============== Dec 30, 2025 (AEST) ===============
+11:56:25.219349 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:56:25.219473 version@stat F·[1] S·181B[181B] Sc·[0.25]
+11:56:25.219487 db@open opening
+11:56:25.219535 journal@recovery F·1
+11:56:25.219646 journal@recovery recovering @3
+11:56:25.224728 memdb@flush created L0@5 N·1 S·162B "loc..seq,v4":"loc..seq,v4"
+11:56:25.225527 version@stat F·[2] S·343B[343B] Sc·[0.50]
+11:56:25.245058 db@janitor F·4 G·0
+11:56:25.245288 db@open done T·25.7935ms
+11:56:28.180391 db@close closing
+11:56:28.180513 db@close done T·116.583µs
+=============== Dec 30, 2025 (AEST) ===============
+11:57:23.483767 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:57:23.483919 version@stat F·[2] S·343B[343B] Sc·[0.50]
+11:57:23.483931 db@open opening
+11:57:23.483964 journal@recovery F·1
+11:57:23.484044 journal@recovery recovering @6
+11:57:23.488817 memdb@flush created L0@8 N·1 S·162B "loc..seq,v6":"loc..seq,v6"
+11:57:23.489318 version@stat F·[3] S·505B[505B] Sc·[0.75]
+11:57:23.516182 db@janitor F·5 G·0
+11:57:23.516417 db@open done T·32.47975ms
+11:57:26.441176 db@close closing
+11:57:26.441285 db@close done T·107.583µs
+=============== Dec 30, 2025 (AEST) ===============
+11:57:52.936835 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:57:52.936961 version@stat F·[3] S·505B[505B] Sc·[0.75]
+11:57:52.936973 db@open opening
+11:57:52.937006 journal@recovery F·1
+11:57:52.938320 journal@recovery recovering @9
+11:57:52.942257 memdb@flush created L0@11 N·1 S·162B "loc..seq,v8":"loc..seq,v8"
+11:57:52.942659 version@stat F·[4] S·667B[667B] Sc·[1.00]
+11:57:52.962605 db@janitor F·6 G·0
+11:57:52.962723 db@open done T·25.743708ms
+11:57:52.962757 table@compaction L0·4 -> L1·0 S·667B Q·9
+11:57:52.967654 table@build created L1@14 N·2 S·181B "loc..seq,v8":"version,v1"
+11:57:52.967696 version@stat F·[0 1] S·181B[0B 181B] Sc·[0.00 0.00]
+11:57:52.977933 table@compaction committed F-3 S-486B Ke·0 D·3 T·15.158208ms
+11:57:52.978443 table@remove removed @8
+11:57:52.978546 table@remove removed @5
+11:57:52.978609 table@remove removed @2
+11:58:01.888827 db@close closing
+11:58:01.888935 db@close done T·107.042µs
+=============== Dec 30, 2025 (AEST) ===============
+11:58:33.170701 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:58:33.170858 version@stat F·[0 1] S·181B[0B 181B] Sc·[0.00 0.00]
+11:58:33.170869 db@open opening
+11:58:33.170905 journal@recovery F·1
+11:58:33.171029 journal@recovery recovering @12
+11:58:33.175426 memdb@flush created L0@15 N·1 S·162B "loc..seq,v10":"loc..seq,v10"
+11:58:33.175716 version@stat F·[1 1] S·343B[162B 181B] Sc·[0.25 0.00]
+11:58:33.196026 db@janitor F·5 G·1
+11:58:33.196057 db@janitor removing table-11
+11:58:33.196137 db@open done T·25.261959ms
+11:58:41.443763 db@close closing
+11:58:41.443892 db@close done T·125.417µs
