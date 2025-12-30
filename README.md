@@ -1,6 +1,6 @@
-## Go Ethereum
+## Go Ethereum (EIP-8082 Fork)
 
-Golang execution layer implementation of the Ethereum protocol.
+Golang execution layer implementation of the Ethereum protocol with EIP-8082 (Contract Event Subscription) support.
 
 [![API Reference](
 https://pkg.go.dev/badge/github.com/ethereum/go-ethereum
@@ -43,6 +43,48 @@ directory.
 |  `abigen`  | Source code generator to convert Ethereum contract definitions into easy-to-use, compile-time type-safe Go packages. It operates on plain [Ethereum contract ABIs](https://docs.soliditylang.org/en/develop/abi-spec.html) with expanded functionality if the contract bytecode is also available. However, it also accepts Solidity source files, making development much more streamlined. Please see our [Native DApps](https://geth.ethereum.org/docs/developers/dapp-developer/native-bindings) page for details.                                  |
 |   `evm`    | Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode. Its purpose is to allow isolated, fine-grained debugging of EVM opcodes (e.g. `evm --code 60ff60ff --debug run`).                                                                                                                                                                                                                                               |
 | `rlpdump`  | Developer utility tool to convert binary RLP ([Recursive Length Prefix](https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp)) dumps (data encoding used by the Ethereum protocol both network as well as consensus wise) to user-friendlier hierarchical representation (e.g. `rlpdump --hex CE0183FFFFFFC4C304050583616263`).                                                                                                                                                                                |
+
+## EIP-8082 Contract Event Subscription
+
+This fork implements EIP-8082, which introduces on-chain event subscriptions allowing smart contracts to automatically react to events emitted by other contracts.
+
+### Quick Start with EIP-8082
+
+```shell
+# Build Geth with EIP-8082 support
+make geth
+
+# Run the complete EIP-8082 demo
+./run-eip8082-demo.sh full
+```
+
+This will:
+1. Start a development node with EIP-8082 enabled
+2. Deploy example contracts with subscribable events
+3. Run comprehensive functionality tests
+
+### New EIP-8082 Opcodes
+
+- **SUBSCRIBE (0xF8)**: Subscribe to contract events
+- **UNSUBSCRIBE (0xF9)**: Unsubscribe from contract events  
+- **NOTIFYSUBSCRIBERS (0xFA)**: Notify event subscribers
+
+### Demo Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `run-eip8082-demo.sh` | Master demo orchestration |
+| `start-eip8082-dev.sh` | Start development node |
+| `deploy-eip8082-contracts.sh` | Deploy example contracts |
+| `test-eip8082.sh` | Run functionality tests |
+
+For complete documentation, see [docs/EIP-8082-README.md](./docs/EIP-8082-README.md).
+
+### Compatible Solidity Compiler
+
+This implementation works with the EIP-8082 Solidity compiler fork:
+- Repository: https://github.com/bitcoinbrisbane/solidity
+- Branch: `claude/verify-solidity-eip-alignment-013A1gVMfHnkNGYriiDHGLKf`
 
 ## Running `geth`
 
