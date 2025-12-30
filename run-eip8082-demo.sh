@@ -142,8 +142,25 @@ start_geth_node() {
     fi
 
     print_info "Starting Geth in background..."
+    print_info "Geth log: $GETH_LOG"
+
+    # Start Geth and capture its output
     nohup ./start-eip8082-dev.sh > "$GETH_LOG" 2>&1 &
     local geth_pid=$!
+
+    # Give it a moment to start
+    sleep 3
+
+    # Check if the process is still running
+    if ! kill -0 $geth_pid 2>/dev/null; then
+        print_error "Geth process failed to start or died immediately"
+        print_info "Checking startup logs..."
+        if [ -f "$GETH_LOG" ]; then
+            print_info "Geth startup log:"
+            cat "$GETH_LOG"
+        fi
+        return 1
+    fi
 
     echo $geth_pid > "$LOG_DIR/geth.pid"
 
@@ -158,10 +175,31 @@ start_geth_node() {
         fi
         sleep 2
         ((attempts++))
+
+        # Show progress and check if process is still running
+        if [ $((attempts % 5)) -eq 0 ]; then
+            print_info "Still waiting... (attempt $attempts/30)"
+            if [ -f "$LOG_DIR/geth.pid" ]; then
+                local pid=$(cat "$LOG_DIR/geth.pid")
+                if ! kill -0 $pid 2>/dev/null; then
+                    print_error "Geth process died! Checking logs..."
+                    print_info "Last 10 lines of Geth log:"
+                    tail -10 "$GETH_LOG" || echo "No log file found"
+                    return 1
+                fi
+            fi
+        fi
     done
 
     if [ $attempts -eq 30 ]; then
-        print_error "Geth failed to start within timeout"
+        print_error "Geth failed to start within timeout (60 seconds)"
+        print_info "Checking Geth logs for errors..."
+        if [ -f "$GETH_LOG" ]; then
+            print_info "Last 20 lines of Geth log:"
+            tail -20 "$GETH_LOG"
+        else
+            print_error "No Geth log file found at $GETH_LOG"
+        fi
         return 1
     fi
 

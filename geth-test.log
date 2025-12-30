@@ -1,0 +1,87 @@
+INFO [12-30|11:54:31.809] Starting Geth on Ethereum mainnet...
+INFO [12-30|11:54:31.813] Maximum peer count                       ETH=0 total=0
+INFO [12-30|11:54:31.816] Set global gas cap                       cap=50,000,000
+INFO [12-30|11:54:31.933] Using developer account                  address=0x71562b71999873DB5b286dF957af199Ec94617F7
+INFO [12-30|11:54:31.934] Defaulting to pebble as the backing database
+INFO [12-30|11:54:31.934] Allocated cache and file handles         database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata cache=512.00MiB handles=5120
+INFO [12-30|11:54:32.048] Opened ancient database                  database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata/ancient/chain readonly=false
+INFO [12-30|11:54:32.048] Opened Era store                         datadir=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata/ancient/chain/era
+WARN [12-30|11:54:32.049] Head block is not reachable
+INFO [12-30|11:54:32.049] Freezer shutting down
+INFO [12-30|11:54:32.077] Initializing the KZG library             backend=gokzg
+INFO [12-30|11:54:32.078] Allocated trie memory caches             clean=154.00MiB dirty=256.00MiB
+INFO [12-30|11:54:32.078] Using pebble as the backing database
+INFO [12-30|11:54:32.078] Allocated cache and file handles         database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata cache=512.00MiB handles=5120
+INFO [12-30|11:54:32.130] Opened ancient database                  database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata/ancient/chain readonly=false
+INFO [12-30|11:54:32.130] Opened Era store                         datadir=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata/ancient/chain/era
+WARN [12-30|11:54:32.130] Head block is not reachable
+INFO [12-30|11:54:32.130] State schema set to default              scheme=path
+INFO [12-30|11:54:32.132] Initialising Ethereum protocol           network=1337 dbversion=<nil>
+INFO [12-30|11:54:32.133] Load database journal from disk
+INFO [12-30|11:54:32.214] Opened ancient database                  database=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/chaindata/ancient/state readonly=false
+INFO [12-30|11:54:32.214] State snapshot generator is not found
+INFO [12-30|11:54:32.214] Starting snapshot generation             root=56e81f..63b421 accounts=0 slots=0 storage=0.00B dangling=0 elapsed="19.25µs"
+INFO [12-30|11:54:32.214] Initialized path database                triecache=154.00MiB statecache=102.00MiB buffer=256.00MiB state-history="last 90000 blocks" journal-dir=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth/triedb
+INFO [12-30|11:54:32.214] Writing custom genesis block
+INFO [12-30|11:54:32.215] Resuming snapshot generation             root=56e81f..63b421 accounts=0 slots=0 storage=0.00B dangling=0 elapsed="599.917µs"
+INFO [12-30|11:54:32.215] Generated snapshot                       accounts=0 slots=0 storage=0.00B dangling=0 elapsed="713.75µs"
+INFO [12-30|11:54:32.215] 
+INFO [12-30|11:54:32.215] ---------------------------------------------------------------------------------------------------------------------------------------------------------
+INFO [12-30|11:54:32.215] Chain ID:  1337 (unknown)
+INFO [12-30|11:54:32.215] Consensus: unknown
+INFO [12-30|11:54:32.215] 
+INFO [12-30|11:54:32.215] Pre-Merge hard forks (block based):
+INFO [12-30|11:54:32.215]  - Homestead:                   #0       
+INFO [12-30|11:54:32.215]  - Tangerine Whistle (EIP 150): #0       
+INFO [12-30|11:54:32.215]  - Spurious Dragon/1 (EIP 155): #0       
+INFO [12-30|11:54:32.215]  - Spurious Dragon/2 (EIP 158): #0       
+INFO [12-30|11:54:32.215]  - Byzantium:                   #0       
+INFO [12-30|11:54:32.215]  - Constantinople:              #0       
+INFO [12-30|11:54:32.215]  - Petersburg:                  #0       
+INFO [12-30|11:54:32.215]  - Istanbul:                    #0       
+INFO [12-30|11:54:32.215]  - Muir Glacier:                #0       
+INFO [12-30|11:54:32.216]  - Berlin:                      #0       
+INFO [12-30|11:54:32.216]  - London:                      #0       
+INFO [12-30|11:54:32.216]  - Arrow Glacier:               #0       
+INFO [12-30|11:54:32.216]  - Gray Glacier:                #0       
+INFO [12-30|11:54:32.216] 
+INFO [12-30|11:54:32.216] Merge configured:
+INFO [12-30|11:54:32.216]  - Total terminal difficulty:  0
+INFO [12-30|11:54:32.216] 
+INFO [12-30|11:54:32.216] Post-Merge hard forks (timestamp based):
+INFO [12-30|11:54:32.216]  - Shanghai:                    @0         
+INFO [12-30|11:54:32.216]  - Cancun:                      @0          blob: (target: 3, max: 6, fraction: 3338477)
+INFO [12-30|11:54:32.216]  - Prague:                      @0          blob: (target: 6, max: 9, fraction: 5007716)
+INFO [12-30|11:54:32.216]  - Osaka:                       @0          blob: (target: 6, max: 9, fraction: 5007716)
+INFO [12-30|11:54:32.216] 
+INFO [12-30|11:54:32.216] All fork specifications can be found at https://ethereum.github.io/execution-specs/src/ethereum/forks/
+INFO [12-30|11:54:32.216] 
+INFO [12-30|11:54:32.216] ---------------------------------------------------------------------------------------------------------------------------------------------------------
+INFO [12-30|11:54:32.216] 
+INFO [12-30|11:54:32.216] Loaded most recent local block           number=0 hash=fa742c..504fec age=56y9mo3w
+INFO [12-30|11:54:32.216] Initialized transaction indexer          range="last 2350000 blocks"
+INFO [12-30|11:54:32.613] Enabled full-sync                        head=0 hash=fa742c..504fec
+INFO [12-30|11:54:32.614] Gasprice oracle is ignoring threshold set threshold=2
+INFO [12-30|11:54:32.615] Registered sync override service
+WARN [12-30|11:54:32.615] You are running Geth in --dev mode. Please note the following:
+WARN [12-30|11:54:32.615] 
+WARN [12-30|11:54:32.615]   1. This mode is only intended for fast, iterative development without assumptions on
+WARN [12-30|11:54:32.615]      security or persistence.
+WARN [12-30|11:54:32.615]   2. The database is created in memory unless specified otherwise. Therefore, shutting down
+WARN [12-30|11:54:32.615]      your computer or losing power will wipe your entire block data and chain state for
+WARN [12-30|11:54:32.615]      your dev environment.
+WARN [12-30|11:54:32.615]   3. A random, pre-allocated developer account will be available and unlocked as
+WARN [12-30|11:54:32.615]      eth.coinbase, which can be used for testing. The random dev account is temporary,
+WARN [12-30|11:54:32.615]      stored on a ramdisk, and will be lost if your machine is restarted.
+WARN [12-30|11:54:32.615]   4. Mining is enabled by default. However, the client will only seal blocks if transactions
+WARN [12-30|11:54:32.615]      are pending in the mempool. The miner's minimum accepted gas price is 1.
+WARN [12-30|11:54:32.615]   5. Networking is disabled; there is no listen-address, the maximum number of peers is set
+WARN [12-30|11:54:32.615]      to 0, and discovery is disabled.
+WARN [12-30|11:54:32.615] 
+INFO [12-30|11:54:32.615] Starting peer-to-peer node               instance=Geth/v1.16.8-unstable-ef967a2a-20251230/darwin-arm64/go1.25.5
+WARN [12-30|11:54:32.615] P2P server will be useless, neither dialing nor listening
+INFO [12-30|11:54:32.643] IPC endpoint opened                      url=/Users/lucascullen/Github/bitcoinbrisbane/go-ethereum/test-data/geth.ipc
+INFO [12-30|11:54:32.643] New local node record                    seq=1,767,059,672,643 id=1f765faa0c67796b ip=127.0.0.1 udp=0 tcp=0
+INFO [12-30|11:54:32.643] Started P2P networking                   self=enode://a4a54e40ee4a15e1f10289efc5058adf404b2cb88f4d49275d075cb5156b994db9c58d88a65c49c4fc9c5809d0321bffcc179ef79038223776b077f8b6ea9f70@127.0.0.1:0
+INFO [12-30|11:54:32.643] HTTP server started                      endpoint=127.0.0.1:8545 auth=false prefix= cors= vhosts=localhost
+INFO [12-30|11:54:32.644] Started log indexer

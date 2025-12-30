@@ -94,7 +94,6 @@ echo ""
     --rpc.gascap 50000000 \
     --rpc.txfeecap 0 \
     --mine \
-    --miner.threads 1 \
     --miner.gasprice 1000000000 \
     --verbosity $LOG_LEVEL \
     --gcmode archive \
